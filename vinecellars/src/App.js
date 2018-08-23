@@ -2,14 +2,15 @@ import React, { Component } from 'react';
 import { BrowserRouter as Switch, Route } from 'react-router-dom';
 import axios from 'axios';
 import './App.css';
-import Footer from './layout/Footer';
-import Home from './Home';
+import Home from './components/Home';
 import Login from './auth/Login';
-import Nav from './layout/Nav';
 import Signup from './auth/Signup';
 import Header from './components/Header';
 // import Profile from './Profile';
-
+//one more route for when/if profile page is made:
+/* <Route path="/profile" component={
+              () => (<Profile user={this.state.user} />)
+            } /> */
 class App extends Component {
   constructor(props){
     super(props);
@@ -63,7 +64,6 @@ class App extends Component {
         <h1>Welcome to Vine Cellars</h1>
         <Switch>
           <div className="container">
-            <Nav user={this.state.user} updateUser={this.getUser} />
             <Route exact path="/users" component={Home} />
             <Route path="/login" component={
               () => (<Login user={this.state.user} updateUser={this.getUser} />)
@@ -71,12 +71,9 @@ class App extends Component {
             <Route path="/signup" component={
               () => (<Signup user={this.state.user} updateUser={this.getUser} />)
             } />
-            {/* <Route path="/profile" component={
-              () => (<Profile user={this.state.user} />)
-            } /> */}
+          
           </div>
         </Switch>
-        <Footer />
       </div>
     );
   }
